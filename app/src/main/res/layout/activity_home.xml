@@ -6,4 +6,104 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
+    <TextView
+        android:id="@+id/Recommendation_Text"
+        android:layout_width="311dp"
+        android:layout_height="123dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/home_text_outline"
+        android:text="Recommendations"
+
+        android:clickable="true"
+        android:textAlignment="center"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboardText" />
+
+    <TextView
+        android:id="@+id/desc3"
+        android:layout_width="253dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="28dp"
+        android:text="Our Picks For You"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/Recommendation_Text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/dashboardText"
+        android:layout_width="311dp"
+        android:layout_height="123dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/home_text_outline"
+        android:text="Dashboard"
+        android:clickable="true"
+        android:textAlignment="center"
+        android:textSize="45sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Add_Songs" />
+
+    <TextView
+        android:id="@+id/desc2"
+        android:layout_width="253dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="36dp"
+        android:text="Your Own Dashboard"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/Recommendation_Text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/ash_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Add_Songs"
+        android:layout_width="311dp"
+        android:layout_height="123dp"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/home_text_outline"
+        android:lineSpacingExtra="60sp"
+        android:text="Add Songs"
+        android:clickable="true"
+        android:onClick="addSongsClicked"
+        android:textAlignment="center"
+        android:textSize="45sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/desc1"
+        android:layout_width="279dp"
+        android:layout_height="39dp"
+        android:text="Add Your Favorite Songs and Rate Them in Any Way You Like !"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/Add_Songs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.784" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="123dp"
+        android:layout_height="104dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:srcCompat="@drawable/baseline_home_24" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
