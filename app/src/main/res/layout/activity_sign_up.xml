@@ -7,6 +7,34 @@
     tools:context=".SignUpActivity">
 
     <EditText
+        android:id="@+id/emailText"
+        android:layout_width="218dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/text_outline"
+        android:drawableLeft="@drawable/baseline_contact_mail_24"
+        android:ems="10"
+        android:hint=" Enter E-mail"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userText" />
+
+    <EditText
+        android:id="@+id/userText"
+        android:layout_width="218dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/text_outline"
+        android:drawableLeft="@drawable/baseline_person_outline_24"
+        android:ems="10"
+        android:hint=" Enter Username"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <EditText
         android:id="@+id/textPassword2"
         android:layout_width="218dp"
         android:layout_height="60dp"
@@ -19,22 +47,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textPassword" />
-
-    <EditText
-        android:id="@+id/emailText"
-        android:layout_width="218dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="97dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="97dp"
-        android:background="@drawable/text_outline"
-        android:drawableLeft="@drawable/baseline_contact_mail_24"
-        android:ems="10"
-        android:hint=" Enter E-mail"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/textPassword"
@@ -56,8 +68,8 @@
         android:layout_height="56dp"
         android:layout_marginTop="40dp"
         android:backgroundTint="@color/blue"
-        android:text="Sign Up"
         android:onClick="signUpClicked"
+        android:text="Sign Up"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textPassword2" />
@@ -87,8 +99,8 @@
         android:layout_marginEnd="82dp"
         android:background="@drawable/text_outline"
         android:clickable="true"
-        android:text="SIGN IN"
         android:onClick="onLoginClicked"
+        android:text="SIGN IN"
         android:textAllCaps="false"
         android:textColor="@color/blue"
         android:textSize="24sp"
@@ -101,12 +113,10 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="20dp"
         android:text="Create Account"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/emailText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
