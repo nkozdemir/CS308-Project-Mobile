@@ -6,6 +6,25 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.android.Android
+import io.ktor.client.request.post
+import io.ktor.client.request.url
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import io.ktor.client.features.json.JsonFeature
+import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.http.ContentType
+import io.ktor.http.contentType
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class RegistrationData(
+    val email: String,
+    val password: String,
+    val name: String
+)
+
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var emailText: EditText
@@ -35,9 +54,37 @@ class SignUpActivity : AppCompatActivity() {
             Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
             return
         }
-        val intent = Intent(this, HomeActivity::class.java)
-        startActivity(intent)
+        runBlocking {
+            val client = HttpClient(Android) {
+                install(JsonFeature) {
+                    serializer = KotlinxSerializer()
+                }
+            }
 
+        try {
+            val response: String = client.post {
+                url("http://10.51.56.188:3000/register")
+                contentType(ContentType.Application.Json)
+                body = RegistrationData(
+                    email = email,
+                    password = password1,
+                    name = username
+                )
+            }
+            Toast.makeText(this@SignUpActivity, "Registration successful", Toast.LENGTH_SHORT).show()
+            navigateToHomeActivity()
+        }
+        catch (e: Exception) {
+            e.printStackTrace()
+
+            println("Response: ${e.message}")
+
+            Toast.makeText(this@SignUpActivity, "Registration failed:${e.message}", Toast.LENGTH_SHORT).show()
+        } finally {
+            client.close()
+        }
+
+    }
     }
     fun onLoginClicked(view: View) {
         navigateToMainActivity()
@@ -45,6 +92,11 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun navigateToMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun navigateToHomeActivity() {
+        val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
     }
 
