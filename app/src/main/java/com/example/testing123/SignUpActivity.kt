@@ -46,6 +46,7 @@ class SignUpActivity : AppCompatActivity() {
         val email = emailText.text.toString()
         val password1 = passwordText1.text.toString()
         val password2 = passwordText2.text.toString()
+
         if (username.isEmpty() || email.isEmpty() || password1.isEmpty()|| password2.isEmpty()) {
             Toast.makeText(this, "Enter username, e-mail and password", Toast.LENGTH_SHORT).show()
             return
@@ -63,13 +64,14 @@ class SignUpActivity : AppCompatActivity() {
 
         try {
             val response: String = client.post {
-                url("http://10.51.56.188:3000/register")
+                url("http://10.51.65.120:3000/register")
                 contentType(ContentType.Application.Json)
                 body = RegistrationData(
                     email = email,
                     password = password1,
                     name = username
                 )
+                println(body)
             }
             Toast.makeText(this@SignUpActivity, "Registration successful", Toast.LENGTH_SHORT).show()
             navigateToHomeActivity()
