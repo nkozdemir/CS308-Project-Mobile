@@ -6,7 +6,28 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.android.Android
+import io.ktor.client.features.json.JsonFeature
+import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.client.request.delete
+import io.ktor.client.request.header
+import io.ktor.client.request.post
+import io.ktor.client.request.url
+import io.ktor.http.ContentType
+import io.ktor.http.contentType
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,10 +45,44 @@ class HomeActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.signout){
-            val intent = Intent(this,MainActivity::class.java)
-            startActivity(intent)
-            finish()
+        if (item.itemId == R.id.signout) {
+            runBlocking {
+                val client = HttpClient(Android) {
+                    install(JsonFeature) {
+                        serializer = KotlinxSerializer()
+                    }
+                }
+
+                try {
+
+                    val accessToken = TokenManager.getInstance().getAccessToken()
+
+                    if (accessToken != null) {
+
+                        client.delete<Unit>("http://10.51.65.120:3000/auth/logout") {
+                            header("Authorization", "Bearer $accessToken")
+                        }
+
+                        // Clear the saved tokens after logout
+                        TokenManager.getInstance().clearTokens()
+
+                        Toast.makeText(this@HomeActivity, "Logout successful", Toast.LENGTH_SHORT).show()
+
+
+                        val intent = Intent(this@HomeActivity, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+
+                        Toast.makeText(this@HomeActivity, "Access token is null", Toast.LENGTH_SHORT).show()
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    Toast.makeText(this@HomeActivity, "Logout failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                } finally {
+                    client.close()
+                }
+            }
         }
         return super.onOptionsItemSelected(item)
     }

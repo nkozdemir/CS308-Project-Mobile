@@ -17,6 +17,14 @@ import io.ktor.http.contentType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
+
 
 @Serializable
 data class LoginData(
@@ -58,7 +66,19 @@ class MainActivity : AppCompatActivity() {
                         password = password,
                     )
                 }
-                println("Response: $response")
+
+                val jsonResponse = Json.decodeFromString<JsonElement>(response)
+                val accessToken = jsonResponse.jsonObject["accessToken"]?.jsonPrimitive?.contentOrNull
+                val refreshToken = jsonResponse.jsonObject["refreshToken"]?.jsonPrimitive?.contentOrNull
+
+                // Save tokens using TokenManager
+                if (accessToken != null && refreshToken != null) {
+                    TokenManager.getInstance().saveTokens(accessToken, refreshToken)
+                    println("Tokens saved successfully")
+                } else {
+                    println("Access token or refresh token is null")
+                }
+
                 Toast.makeText(this@MainActivity, "Login successful", Toast.LENGTH_SHORT).show()
                 navigateToHomeAct()
             }catch (e: Exception) {
