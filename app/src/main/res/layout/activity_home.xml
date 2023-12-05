@@ -41,6 +41,7 @@
         android:background="@drawable/home_text_outline"
         android:text="Dashboard"
         android:clickable="true"
+        android:onClick="dashboardClicked"
         android:textAlignment="center"
         android:textSize="45sp"
         app:layout_constraintEnd_toEndOf="parent"
