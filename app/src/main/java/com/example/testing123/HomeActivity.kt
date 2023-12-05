@@ -59,11 +59,11 @@ class HomeActivity : AppCompatActivity() {
 
                     if (accessToken != null) {
 
-                        client.delete<Unit>("http://10.51.65.120:3000/auth/logout") {
+                        client.delete<Unit>("http://192.168.1.31:3000/auth/logout") {
                             header("Authorization", "Bearer $accessToken")
                         }
 
-                        // Clear the saved tokens after logout
+
                         TokenManager.getInstance().clearTokens()
 
                         Toast.makeText(this@HomeActivity, "Logout successful", Toast.LENGTH_SHORT).show()
@@ -89,6 +89,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun addSongsClicked(view: View){
         val intent = Intent(this,Add_Song_Activity::class.java)
+        startActivity(intent)
+    }
+
+    fun dashboardClicked(view: View){
+        val intent = Intent(this,DashboardActivity::class.java)
         startActivity(intent)
     }
 }
