@@ -3,6 +3,7 @@ package com.example.testing123
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -11,7 +12,8 @@ import com.example.testing123.R
 
 
 
-class SongAdapter : RecyclerView.Adapter<SongAdapter.SongViewHolder>() {
+class SongAdapter(private val onSongDeleteClick: (Int) -> Unit) :
+    RecyclerView.Adapter<SongAdapter.SongViewHolder>() {
 
     private var songs: List<Song> = emptyList()
 
@@ -24,6 +26,9 @@ class SongAdapter : RecyclerView.Adapter<SongAdapter.SongViewHolder>() {
     override fun onBindViewHolder(holder: SongViewHolder, position: Int) {
         val song = songs[position]
         holder.bind(song)
+        holder.deleteButton.setOnClickListener {
+            onSongDeleteClick(song.songID)
+        }
     }
 
     override fun getItemCount(): Int = songs.size
@@ -36,6 +41,7 @@ class SongAdapter : RecyclerView.Adapter<SongAdapter.SongViewHolder>() {
     class SongViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
         private val performerTextView: TextView = itemView.findViewById(R.id.performerTextView)
+        val deleteButton: Button = itemView.findViewById(R.id.deleteButton)
 
         fun bind(song: Song) {
             titleTextView.text = "Title: ${song.title}"
