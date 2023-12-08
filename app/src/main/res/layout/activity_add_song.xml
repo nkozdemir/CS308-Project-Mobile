@@ -3,7 +3,104 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Add_Song_Activity">
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/editTextSongName"
+        android:layout_width="368dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/text_outline"
+        android:drawableLeft="@drawable/baseline_library_music_24"
+        android:hint=" Song Name"
+        android:textAlignment="textStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SpoView" />
+
+    <EditText
+        android:id="@+id/editTextPerformerName"
+        android:layout_width="368dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/editTextSongName"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/text_outline"
+        android:drawableLeft="@drawable/baseline_library_music_24"
+        android:hint=" Performer Name(s)"
+        android:textAlignment="viewStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSongName" />
+
+    <EditText
+        android:id="@+id/editTextAlbumName"
+        android:layout_width="368dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/editTextPerformerName"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/text_outline"
+        android:drawableLeft="@drawable/baseline_library_music_24"
+        android:hint=" Album Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPerformerName" />
+
+    <Button
+        android:id="@+id/buttonSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextAlbumName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp"
+        android:backgroundTint="@color/blue"
+        android:onClick="searchButtonClick"
+        android:text="Search"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAlbumName" />
+
+    <TextView
+        android:id="@+id/SpoView"
+        android:layout_width="240dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/blue_theme_outline"
+        android:text="Search the Song You Want to Add"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/csv_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="151dp"
+        android:text="Or add songs through a csv file "
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAlbumName" />
+
+    <TextView
+        android:id="@+id/here_text"
+        android:layout_width="70dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="136dp"
+        android:background="@drawable/blue_theme_outline"
+        android:text="Here"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/csv_add"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAlbumName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

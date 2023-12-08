@@ -21,7 +21,13 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.serialization.SerialName
-
+@Serializable
+data class ApiResponse<T>(
+    @SerialName("status") val status: String,
+    @SerialName("code") val code: Int,
+    @SerialName("message") val message: String,
+    @SerialName("data") val data: List<T>
+)
 
 @Serializable
 data class Song(
@@ -31,12 +37,13 @@ data class Song(
     @SerialName("Album") val album: String,
     @SerialName("Length") val length: Int,
     @SerialName("SpotifyID") val spotifyID: String?,
+    @SerialName("Image") val image: String?,
     @SerialName("Performers") val performers: List<Performer>
 )
 
 @Serializable
 data class Performer(
-    @SerialName("Name") val name: String
+    @SerialName("Name") val name: String,
 )
 
 
@@ -60,35 +67,48 @@ class AllAddedSongs : AppCompatActivity() {
         fetchUserSongs()
     }
 
+
     private fun fetchUserSongs() {
         val accessToken = TokenManager.getInstance().getAccessToken()
+        val json = Json { ignoreUnknownKeys = true }  //Change this (add genres etc.)
 
         // GET request to retrieve user's songs
         mainScope.launch {
             try {
-                val response: String = withContext(Dispatchers.IO) {
+                val jsonString: String = withContext(Dispatchers.IO) {
                     val client = HttpClient {
                         install(JsonFeature) {
-                            serializer = KotlinxSerializer()
+                            serializer = KotlinxSerializer(json)
                         }
                     }
 
-                    client.get("http://192.168.1.31:3000/song/getAllUserSongs") {
+                    client.get("http://10.3.131.165:3000/song/getAllUserSongs") {
                         header(HttpHeaders.Authorization, "Bearer $accessToken")
                     }
                 }
 
                 // Parse the JSON response
-                val songs: List<Song> = Json.decodeFromString(response)
-                Log.d("PARSED_DATA", songs.toString())
+                val apiResponse: ApiResponse<Song> = json.decodeFromString(jsonString)
 
-                // Update the adapter with the new list of songs
-                songAdapter.setSongs(songs)
+                if (apiResponse.status == "success") {
+                    val songs: List<Song> = apiResponse.data
+
+                    // Log the parsed data
+                    Log.d("PARSED_DATA", songs.toString())
+
+                    // Update the adapter with the new list of songs
+                    songAdapter.setSongs(songs)
+                } else {
+                    // Handle error or show a message
+                    Log.e("API_ERROR", "Error fetching user songs. Status: ${apiResponse.status}")
+                }
             } catch (e: Exception) {
                 e.printStackTrace()
+                // Handle exceptions
             }
         }
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
