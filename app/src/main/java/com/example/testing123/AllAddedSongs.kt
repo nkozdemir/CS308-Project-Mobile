@@ -20,6 +20,9 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import androidx.recyclerview.widget.RecyclerView
+import io.ktor.client.request.post
+import io.ktor.http.ContentType
+import io.ktor.http.contentType
 import kotlinx.serialization.SerialName
 @Serializable
 data class ApiResponse<T>(
@@ -58,13 +61,61 @@ class AllAddedSongs : AppCompatActivity() {
 
         // Initialize RecyclerView and its adapter
         recyclerView = findViewById(R.id.recyclerView)
-        songAdapter = SongAdapter()
+        songAdapter = SongAdapter { songId ->
+            // Handle delete button click, make a post request to delete the song
+            deleteSong(songId)
+        }
 
         // Set up RecyclerView
         recyclerView.adapter = songAdapter
         recyclerView.layoutManager = LinearLayoutManager(this@AllAddedSongs)
 
         fetchUserSongs()
+    }
+    private fun deleteSong(songId: Int) {
+        val accessToken = TokenManager.getInstance().getAccessToken()
+        val json = Json { ignoreUnknownKeys = true }
+
+        mainScope.launch {
+            try {
+                val response: String = withContext(Dispatchers.IO) {
+                    val client = HttpClient {
+                        install(JsonFeature) {
+                            serializer = KotlinxSerializer(json)
+                        }
+                    }
+
+                    client.post("http://10.59.5.69:3000/song/deleteSong/User") {
+                        header(HttpHeaders.Authorization, "Bearer $accessToken")
+                        contentType(ContentType.Application.Json)
+                        body = mapOf("songId" to songId)
+                    }
+                }
+
+                // Parse the JSON response
+                val apiResponse: ApiResponse<Song> = json.decodeFromString(response)
+
+                // Handle the parsed response
+                if (apiResponse.status == "success") {
+                    // The song was deleted successfully
+                    val removedSong: Song? = apiResponse.data.firstOrNull()
+                    removedSong?.let {
+                        Log.d("DELETE_SUCCESS", "Song deleted successfully: $it")
+                        // Refresh the song list
+                        fetchUserSongs()
+                    } ?: run {
+                        Log.w("DELETE_SUCCESS", "Server response missing data for removed song.")
+                    }
+                } else {
+                    // Handle error or show a message
+                    Log.e("DELETE_ERROR", "Error deleting song. Status: ${apiResponse.status}")
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                // Handle exceptions
+                Log.e("DELETE_ERROR", "Error deleting song.", e)
+            }
+        }
     }
 
 
@@ -82,7 +133,7 @@ class AllAddedSongs : AppCompatActivity() {
                         }
                     }
 
-                    client.get("http://10.3.131.165:3000/song/getAllUserSongs") {
+                    client.get("http://10.59.5.69:3000/song/getAllUserSongs") {
                         header(HttpHeaders.Authorization, "Bearer $accessToken")
                     }
                 }

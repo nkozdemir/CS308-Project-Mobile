@@ -77,7 +77,7 @@ class DisplaySearchActivity : AppCompatActivity() {
         }
 
         try {
-            val response: String = client.post("http://10.3.131.165:3000/song/addSpotifySong") {
+            val response: String = client.post("http://10.59.5.69:3000/song/addSpotifySong") {
                 contentType(ContentType.Application.Json)
                 headers {
                     append(HttpHeaders.Authorization, "Bearer $accessToken")
