@@ -40,7 +40,6 @@ class SongAdapter : RecyclerView.Adapter<SongAdapter.SongViewHolder>() {
         fun bind(song: Song) {
             titleTextView.text = "Title: ${song.title}"
             performerTextView.text = "Performer: ${song.performers.joinToString { it.name }}"
-            // Add the logic to display genre based on your data model
         }
     }
 }

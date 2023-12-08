@@ -14,20 +14,7 @@ import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.request.delete
 import io.ktor.client.request.header
-import io.ktor.client.request.post
-import io.ktor.client.request.url
-import io.ktor.http.ContentType
-import io.ktor.http.contentType
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.contentOrNull
-import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.jsonPrimitive
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,7 +46,7 @@ class HomeActivity : AppCompatActivity() {
 
                     if (accessToken != null) {
 
-                        client.delete<Unit>("http://192.168.1.31:3000/auth/logout") {
+                        client.delete<Unit>("http://10.3.131.165:3000/auth/logout") {
                             header("Authorization", "Bearer $accessToken")
                         }
 
@@ -88,7 +75,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     fun addSongsClicked(view: View){
-        val intent = Intent(this,Add_Song_Activity::class.java)
+        val intent = Intent(this,AddSongActivity::class.java)
         startActivity(intent)
     }
 
