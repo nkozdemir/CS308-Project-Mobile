@@ -1,7 +1,9 @@
 package com.example.testing123
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.ktor.client.HttpClient
@@ -29,8 +31,9 @@ data class ApiResponse<T>(
     @SerialName("status") val status: String,
     @SerialName("code") val code: Int,
     @SerialName("message") val message: String,
-    @SerialName("data") val data: List<T>
+    @SerialName("data") val data: T
 )
+
 
 @Serializable
 data class Song(
@@ -54,17 +57,24 @@ class AllAddedSongs : AppCompatActivity() {
     private val mainScope = MainScope()
     private lateinit var recyclerView: RecyclerView
     private lateinit var songAdapter: SongAdapter
-
+    private var selectedSong: Song? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_added_songs)
 
         // Initialize RecyclerView and its adapter
         recyclerView = findViewById(R.id.recyclerView)
-        songAdapter = SongAdapter { songId ->
-            // Handle delete button click, make a post request to delete the song
-            deleteSong(songId)
-        }
+        songAdapter = SongAdapter(
+            onSongDeleteClick = { songId ->
+                // Handle delete button click, make a post request to delete the song
+                deleteSong(songId)
+            },
+            onSongRatingClick = { song ->
+                // Handle rating button click, store the selected Song
+                selectedSong = song
+                onRatingClick()
+            }
+        )
 
         // Set up RecyclerView
         recyclerView.adapter = songAdapter
@@ -85,7 +95,7 @@ class AllAddedSongs : AppCompatActivity() {
                         }
                     }
 
-                    client.post("http://10.59.5.69:3000/song/deleteSong/User") {
+                    client.post("http://10.51.65.120:3000/song/deleteSong/User") {
                         header(HttpHeaders.Authorization, "Bearer $accessToken")
                         contentType(ContentType.Application.Json)
                         body = mapOf("songId" to songId)
@@ -98,7 +108,7 @@ class AllAddedSongs : AppCompatActivity() {
                 // Handle the parsed response
                 if (apiResponse.status == "success") {
                     // The song was deleted successfully
-                    val removedSong: Song? = apiResponse.data.firstOrNull()
+                    val removedSong: Song? = apiResponse.data
                     removedSong?.let {
                         Log.d("DELETE_SUCCESS", "Song deleted successfully: $it")
                         // Refresh the song list
@@ -133,13 +143,13 @@ class AllAddedSongs : AppCompatActivity() {
                         }
                     }
 
-                    client.get("http://10.59.5.69:3000/song/getAllUserSongs") {
+                    client.get("http://10.51.65.120:3000/song/getAllUserSongs") {
                         header(HttpHeaders.Authorization, "Bearer $accessToken")
                     }
                 }
 
                 // Parse the JSON response
-                val apiResponse: ApiResponse<Song> = json.decodeFromString(jsonString)
+                val apiResponse: ApiResponse<List<Song>> = json.decodeFromString(jsonString)
 
                 if (apiResponse.status == "success") {
                     val songs: List<Song> = apiResponse.data
@@ -159,6 +169,14 @@ class AllAddedSongs : AppCompatActivity() {
             }
         }
     }
+    private fun onRatingClick() {
+        selectedSong?.let {
+            SongRepository.selectedSong = it
+            startActivity(Intent(this, RatingActivity::class.java))
+        }
+    }
+
+
 
 
     override fun onDestroy() {
