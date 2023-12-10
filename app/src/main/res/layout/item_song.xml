@@ -28,9 +28,21 @@
             android:textSize="16sp"
             android:textStyle="italic"
             android:text="Performer(s): "/>
+        <TextView
+            android:id="@+id/albumTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="Album: "/>
 
     </LinearLayout>
-
+    <Button
+        android:id="@+id/ratingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rating"
+        android:onClick="onRatingButtonClick"
+        android:backgroundTint="#00A148"/>
     <Button
         android:id="@+id/deleteButton"
         android:layout_width="wrap_content"

@@ -12,8 +12,10 @@ import com.example.testing123.R
 
 
 
-class SongAdapter(private val onSongDeleteClick: (Int) -> Unit) :
-    RecyclerView.Adapter<SongAdapter.SongViewHolder>() {
+class SongAdapter(
+    private val onSongDeleteClick: (Int) -> Unit,
+    private val onSongRatingClick: (Song) -> Unit
+) : RecyclerView.Adapter<SongAdapter.SongViewHolder>() {
 
     private var songs: List<Song> = emptyList()
 
@@ -26,8 +28,13 @@ class SongAdapter(private val onSongDeleteClick: (Int) -> Unit) :
     override fun onBindViewHolder(holder: SongViewHolder, position: Int) {
         val song = songs[position]
         holder.bind(song)
+
         holder.deleteButton.setOnClickListener {
             onSongDeleteClick(song.songID)
+        }
+
+        holder.ratingButton.setOnClickListener {
+            onSongRatingClick(song)
         }
     }
 
@@ -41,12 +48,17 @@ class SongAdapter(private val onSongDeleteClick: (Int) -> Unit) :
     class SongViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
         private val performerTextView: TextView = itemView.findViewById(R.id.performerTextView)
+        private val albumTextView: TextView = itemView.findViewById(R.id.albumTextView)
         val deleteButton: Button = itemView.findViewById(R.id.deleteButton)
+        val ratingButton: Button = itemView.findViewById(R.id.ratingButton)
 
         fun bind(song: Song) {
             titleTextView.text = "Title: ${song.title}"
             performerTextView.text = "Performer: ${song.performers.joinToString { it.name }}"
+            albumTextView.text = "Album: ${song.album}"
+
         }
     }
 }
+
 

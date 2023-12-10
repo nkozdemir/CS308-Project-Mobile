@@ -38,10 +38,6 @@ class DisplaySearchActivity : AppCompatActivity() {
         recyclerView.layoutManager = layoutManager
 
         val adapter = SearchResultsAdapter(SearchDataHolder.displaySearchDataList ?: emptyList()) { position, view ->
-            // Handle add button click here
-            // You can use the position to identify the clicked item
-            // For example, SearchDataHolder.displaySearchDataList?.get(it) to get the clicked item
-            // Add your logic to handle the add button click
             onAddButtonClick(position, view)
         }
         recyclerView.adapter = adapter
@@ -77,7 +73,7 @@ class DisplaySearchActivity : AppCompatActivity() {
         }
 
         try {
-            val response: String = client.post("http://10.59.5.69:3000/song/addSpotifySong") {
+            val response: String = client.post("http://10.51.65.120:3000/song/addSpotifySong") {
                 contentType(ContentType.Application.Json)
                 headers {
                     append(HttpHeaders.Authorization, "Bearer $accessToken")

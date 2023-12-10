@@ -46,7 +46,7 @@ class HomeActivity : AppCompatActivity() {
 
                     if (accessToken != null) {
 
-                        client.delete<Unit>("http://10.59.5.69:3000/auth/logout") {
+                        client.delete<Unit>("http://10.51.65.120:3000/auth/logout") {
                             header("Authorization", "Bearer $accessToken")
                         }
 

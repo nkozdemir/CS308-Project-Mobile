@@ -79,28 +79,36 @@
         android:id="@+id/csv_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="151dp"
-        android:text="Or add songs through a csv file "
-        android:textSize="20sp"
+        android:layout_marginTop="128dp"
+        android:text="Or add songs through different methods"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextAlbumName" />
 
-    <TextView
-        android:id="@+id/here_text"
-        android:layout_width="70dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="136dp"
-        android:background="@drawable/blue_theme_outline"
-        android:text="Here"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
+    <Button
+        android:id="@+id/csvButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        android:text="csv file"
+        android:onClick="csvButtonClick"
+        android:backgroundTint="@color/blue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/csv_add" />
+
+    <Button
+        android:id="@+id/exDBButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
+        android:text="External DB"
+        android:backgroundTint="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/csv_add"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAlbumName" />
+        app:layout_constraintTop_toBottomOf="@+id/csv_add" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -102,6 +102,10 @@ class AddSongActivity : AppCompatActivity() {
         // Call your backend API to search for songs
         searchSongs(songName, performerName, albumName)
     }
+    fun csvButtonClick(view: View) {
+        val intent = Intent(this,CsvUploadActivity::class.java)
+        startActivity(intent)
+    }
 
     private fun searchSongs(songName: String, performerName: String, albumName: String) {
         val accessToken = TokenManager.getInstance().getAccessToken()
@@ -124,7 +128,7 @@ class AddSongActivity : AppCompatActivity() {
                     println(requestBody)
 
 
-                    client.post("http://10.59.5.69:3000/spotifyapi/searchSong") {
+                    client.post("http://10.51.65.120:3000/spotifyapi/searchSong") {
                         header(HttpHeaders.Authorization, "Bearer $accessToken")
                         contentType(ContentType.Application.Json)
                         body = requestBody
