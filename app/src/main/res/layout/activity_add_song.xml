@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextAlbumName"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="44dp"
         android:backgroundTint="@color/blue"
         android:onClick="searchButtonClick"
         android:text="Search"
@@ -79,7 +79,7 @@
         android:id="@+id/csv_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="120dp"
         android:text="Or add songs through different methods"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,11 +90,11 @@
         android:id="@+id/csvButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="10dp"
-        android:text="csv file"
-        android:onClick="csvButtonClick"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="44dp"
         android:backgroundTint="@color/blue"
+        android:onClick="csvButtonClick"
+        android:text="Csv File"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/csv_add" />
 
@@ -102,11 +102,23 @@
         android:id="@+id/exDBButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="50dp"
-        android:text="External DB"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="20dp"
         android:backgroundTint="@color/blue"
+        android:text="External DB"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/csv_add" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:backgroundTint="@color/blue"
+        android:text="Manual Add"
+        android:onClick="ManualAddButtonClick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/csv_add" />
 
 

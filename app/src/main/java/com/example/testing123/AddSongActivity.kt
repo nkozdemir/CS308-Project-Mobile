@@ -107,6 +107,11 @@ class AddSongActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun ManualAddButtonClick(view: View) {
+        val intent = Intent(this,ManualAddSongActivity::class.java)
+        startActivity(intent)
+    }
+
     private fun searchSongs(songName: String, performerName: String, albumName: String) {
         val accessToken = TokenManager.getInstance().getAccessToken()
         if (songName.isEmpty()) {
