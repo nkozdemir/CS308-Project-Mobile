@@ -1,5 +1,6 @@
 package com.example.testing123
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -154,6 +155,8 @@ class AllAddedSongs : AppCompatActivity() {
                 if (apiResponse.status == "success") {
                     val songs: List<Song> = apiResponse.data
 
+
+
                     // Log the parsed data
                     Log.d("PARSED_DATA", songs.toString())
 
@@ -169,6 +172,8 @@ class AllAddedSongs : AppCompatActivity() {
             }
         }
     }
+
+
     private fun onRatingClick() {
         selectedSong?.let {
             SongRepository.selectedSong = it

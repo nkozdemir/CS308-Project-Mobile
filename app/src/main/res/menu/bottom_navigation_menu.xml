@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_song"
+        android:icon="@drawable/baseline_library_music_24"
+        android:title="Song" />
+    <item
+        android:id="@+id/action_performer"
+        android:icon="@drawable/baseline_mic_external_on_24"
+        android:title="Performer" />
+    <item
+        android:id="@+id/action_album"
+        android:icon="@drawable/baseline_cyclone_24"
+        android:title="Album" />
+</menu>

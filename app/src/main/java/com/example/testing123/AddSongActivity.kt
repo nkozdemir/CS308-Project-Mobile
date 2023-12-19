@@ -160,9 +160,6 @@ class AddSongActivity : AppCompatActivity() {
                         DisplaySearchData(songName, performerName, imageUrl, spotifyID)
                     }
                     SearchDataHolder.displaySearchDataList = displaySearchDataList
-                    if (displaySearchDataList.isNullOrEmpty()) {
-                        //Will send to Custom song add
-                    }
 
                     val intent = Intent(this@AddSongActivity, DisplaySearchActivity::class.java)
                     startActivity(intent)

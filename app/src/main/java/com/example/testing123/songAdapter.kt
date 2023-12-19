@@ -1,13 +1,16 @@
 package com.example.testing123
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.testing123.R
 
 
@@ -56,9 +59,11 @@ class SongAdapter(
             titleTextView.text = "Title: ${song.title}"
             performerTextView.text = "Performer: ${song.performers.joinToString { it.name }}"
             albumTextView.text = "Album: ${song.album}"
-
         }
     }
+
+
 }
+
 
 
