@@ -5,15 +5,28 @@
     android:layout_height="wrap_content"
     tools:context=".AllAddedSongs"
     android:orientation="vertical">
-    <TextView
-        android:id="@+id/titleTextView"
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Songs Added by You"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:padding="16dp"
-        android:background="#89A4AB" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="#C0D6BF"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/toolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Your Added Songs"
+            android:textColor="#29402F"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

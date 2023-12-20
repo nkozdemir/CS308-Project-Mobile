@@ -1,14 +1,18 @@
 package com.example.testing123
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.ktor.client.HttpClient
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
@@ -82,6 +86,13 @@ class RatingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rating)
 
+
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_24)
+
+
         song = SongRepository.selectedSong!!
         val songNameTextView: TextView = findViewById(R.id.songName)
 
@@ -89,7 +100,31 @@ class RatingActivity : AppCompatActivity() {
 
         val performerNameTextView: TextView = findViewById(R.id.performerName)
         val firstPerformerName = song.performers.firstOrNull()?.name ?: "Unknown Performer"
+
         performerNameTextView.text = "Performer: $firstPerformerName"
+
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.action_song -> {
+                    // Handle song item click (if needed)
+                    true
+                }
+                R.id.action_performer -> {
+                    // Handle performer item click
+                    val intent = Intent(this, PerformerRatingActivity::class.java)
+                    startActivity(intent)
+
+                    true
+                }
+                R.id.action_album -> {
+                    // Handle album item click (if needed)
+                    true
+                }
+                else -> false
+            }
+        }
+        bottomNavigationView.menu.findItem(R.id.action_song)?.isChecked = true
 
         mainScope.launch {
             val averageRating = getGeneralSongRating(song)
@@ -168,7 +203,7 @@ class RatingActivity : AppCompatActivity() {
                         }
                     }
 
-                    val url = "http://10.51.65.120:3000/rating/song/create"
+                    val url = "http://10.51.19.249:3000/rating/song/create"
 
                     val requestBody = SongRatingSubmitRequest(
                         songID = song.songID,
@@ -214,7 +249,7 @@ class RatingActivity : AppCompatActivity() {
                         }
                     }
 
-                    val url = "http://10.51.65.120:3000/rating/song/delete"
+                    val url = "http://10.51.19.249:3000/rating/song/delete"
 
                     client.post<String>(url) {
                         header(HttpHeaders.Authorization, "Bearer $accessToken")
@@ -257,7 +292,7 @@ class RatingActivity : AppCompatActivity() {
                     }
                 }
 
-                val url = "http://10.51.65.120:3000/rating/song/get/userid"
+                val url = "http://10.51.19.249:3000/rating/song/get/userid"
 
                 client.get(url) {
                     header(HttpHeaders.Authorization, "Bearer $accessToken")
@@ -297,7 +332,7 @@ class RatingActivity : AppCompatActivity() {
                 }
 
 
-                val url = "http://10.51.65.120:3000/rating/song/get/songid"
+                val url = "http://10.51.19.249:3000/rating/song/get/songid"
 
 
 
@@ -342,7 +377,23 @@ class RatingActivity : AppCompatActivity() {
             0.0f // Default value when there are no ratings
         }
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                // Handle the Up button click
+                val intent = Intent(this, AllAddedSongs::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                startActivity(intent)
+                finish()
+                return true
+            }
+            // Add other cases if needed
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
+
 
 
 

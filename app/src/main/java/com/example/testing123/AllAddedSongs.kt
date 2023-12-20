@@ -4,8 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.ktor.client.HttpClient
 import io.ktor.client.features.json.JsonFeature
@@ -62,6 +64,12 @@ class AllAddedSongs : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_added_songs)
+
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_24)
 
         // Initialize RecyclerView and its adapter
         recyclerView = findViewById(R.id.recyclerView)
@@ -144,7 +152,7 @@ class AllAddedSongs : AppCompatActivity() {
                         }
                     }
 
-                    client.get("http://10.51.65.120:3000/song/getAllUserSongs") {
+                    client.get("http://10.51.19.249:3000/song/getAllUserSongs") {
                         header(HttpHeaders.Authorization, "Bearer $accessToken")
                     }
                 }
@@ -187,6 +195,18 @@ class AllAddedSongs : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         mainScope.cancel()
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+
+                val intent = Intent(this, DashboardActivity::class.java)
+                startActivity(intent)
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
 

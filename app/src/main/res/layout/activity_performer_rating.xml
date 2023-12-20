@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RatingActivity"
-    android:parentActivityName=".AllAddedSongs">
-
+    tools:context=".PerformerRatingActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -20,19 +18,7 @@
         android:id="@+id/performerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:background="@drawable/home_text_outline"
-        android:text="TextView"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/songName" />
-
-    <TextView
-        android:id="@+id/songName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="150dp"
         android:background="@drawable/home_text_outline"
         android:text="TextView"
         android:textSize="24sp"
@@ -44,16 +30,16 @@
         android:id="@+id/explainText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="72dp"
-        android:text="Song Rating:"
         android:background="@drawable/home_text_outline"
+        android:text="Performer Rating:"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/performerName" />
 
     <TextView
-        android:id="@+id/generalSongRating"
+        android:id="@+id/generalPerformerRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
@@ -67,16 +53,15 @@
         android:id="@+id/explainText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
         android:layout_marginTop="44dp"
         android:background="@drawable/home_text_outline"
-        android:text="Your Song Rating:"
+        android:text="Your Performer Rating:"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/explainText" />
 
     <TextView
-        android:id="@+id/userSongRatingTextView"
+        android:id="@+id/userPerformerRatingTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
@@ -84,7 +69,7 @@
         android:text="TextView"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/generalSongRating" />
+        app:layout_constraintTop_toBottomOf="@+id/generalPerformerRating" />
 
     <Button
         android:id="@+id/removeSongRatingButton"
@@ -107,7 +92,7 @@
         android:inputType="numberDecimal"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/generalSongRating" />
+        app:layout_constraintTop_toBottomOf="@+id/generalPerformerRating" />
 
     <Button
         android:id="@+id/submitRatingButton"
@@ -119,7 +104,7 @@
         android:backgroundTint="@color/blue"
         android:text="Submit Rating"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/generalSongRating" />
+        app:layout_constraintTop_toBottomOf="@+id/explainText" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"

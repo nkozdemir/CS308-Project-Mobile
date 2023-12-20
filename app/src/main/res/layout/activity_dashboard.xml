@@ -6,20 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".DashboardActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/ash_gray"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <TextView
         android:id="@+id/your_songs"
         android:layout_width="217dp"
         android:layout_height="97dp"
         android:layout_marginBottom="400dp"
         android:background="@drawable/dashboard_text_outline"
-        android:text="Your Added Songs"
         android:clickable="true"
         android:onClick="allSongsClicked"
+        android:text="Your Added Songs"
         android:textAlignment="center"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.24" />
+        app:layout_constraintVertical_bias="0.567" />
 </androidx.constraintlayout.widget.ConstraintLayout>
