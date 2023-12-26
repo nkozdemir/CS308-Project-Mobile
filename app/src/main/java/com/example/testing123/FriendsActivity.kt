@@ -26,17 +26,18 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 
 
-
+@Serializable
 data class FriendInfo(
     @SerialName("UserID") val userID: Int,
     @SerialName("Name") val name: String,
-    @SerialName("Email") val email: Int,
+    @SerialName("Email") val email: String,
 
 )
-
+@Serializable
 data class Friends(
     @SerialName("FriendID") val friendID: Int,
     @SerialName("UserID") val userID: Int,
@@ -59,11 +60,12 @@ class FriendsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_friends)
 
+        // Initialize recyclerView before setting adapter and layout manager
+        recyclerView = findViewById(R.id.recyclerView)
 
         friendsAdapter = FriendsAdapter(emptyList())  // Initialize with an empty list
         recyclerView.adapter = friendsAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView = findViewById(R.id.recyclerView)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
