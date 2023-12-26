@@ -117,10 +117,6 @@ class RatingActivity : AppCompatActivity() {
 
                     true
                 }
-                R.id.action_album -> {
-                    // Handle album item click (if needed)
-                    true
-                }
                 else -> false
             }
         }
@@ -366,6 +362,10 @@ class RatingActivity : AppCompatActivity() {
             Log.e("NETWORK_ERROR", "Error fetching general song rating.", e)
         }
          return 0.0f
+    }
+    fun getSonginfo(song: Song) {
+        val accessToken = TokenManager.getInstance().getAccessToken()
+
     }
 
 

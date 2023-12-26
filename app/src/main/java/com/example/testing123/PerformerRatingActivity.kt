@@ -6,6 +6,48 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class PerformerRating(
+    @SerialName("PerformerRatingID") val performerRatingID: Int,
+    @SerialName("UserID") val userID: Int,
+    @SerialName("PerformerID") val performerID: Int,
+    @SerialName("Rating") val rating: Int,
+    @SerialName("Date") val date: String
+)
+@Serializable
+data class PerformerRatingResponse(
+    @SerialName("status") val status: String,
+    @SerialName("code") val code: Int,
+    @SerialName("message") val message: String,
+    @SerialName("data") val data: List<PerformerRating>
+)
+@Serializable
+data class CreatePerformerRatingResponse(
+    @SerialName("status") val status: String,
+    @SerialName("code") val code: Int,
+    @SerialName("message") val message: String,
+    @SerialName("data") val data: PerformerRating
+)
+
+@Serializable
+data class PerformerRatingSubmitRequest(
+    @SerialName("PerformerId") val performerID: Int,
+    @SerialName("rating") val rating: Int
+)
+@Serializable
+data class PerformerIdRequestBody(
+    @SerialName("PerformerId") val performerID: Int
+)
+@Serializable
+data class DeletePerformerRatingResponse(
+    @SerialName("status") val status: String,
+    @SerialName("code") val code: Int,
+    @SerialName("message") val message: String,
+    //@SerialName("data") val data: List<SongRating>?
+)
 
 class PerformerRatingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,10 +74,6 @@ class PerformerRatingActivity : AppCompatActivity() {
                     // Performer is already selected, do nothing
                     true
                 }
-                R.id.action_album -> {
-                    // Handle album item click (if needed)
-                    true
-                }
                 else -> false
             }
         }
@@ -50,7 +88,13 @@ class PerformerRatingActivity : AppCompatActivity() {
 
 
 
-
+    private fun calculateAverageRating(songRatings: List<SongRating>): Float {
+        return if (songRatings.isNotEmpty()) {
+            songRatings.map { it.rating }.average().toFloat()
+        } else {
+            0.0f // Default value when there are no ratings
+        }
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {

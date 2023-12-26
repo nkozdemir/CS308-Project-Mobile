@@ -53,6 +53,7 @@ data class Song(
 @Serializable
 data class Performer(
     @SerialName("Name") val name: String,
+    //@SerialName("id") val id: String,
 )
 
 
@@ -104,7 +105,7 @@ class AllAddedSongs : AppCompatActivity() {
                         }
                     }
 
-                    client.post("http://10.51.65.120:3000/song/deleteSong/User") {
+                    client.post("http://10.51.19.249:3000/song/deleteSong/User") {
                         header(HttpHeaders.Authorization, "Bearer $accessToken")
                         contentType(ContentType.Application.Json)
                         body = mapOf("songId" to songId)

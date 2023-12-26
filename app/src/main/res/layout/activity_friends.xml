@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FriendsActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#C0D6BF"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+
+
+    <!-- Add a RecyclerView with ID recyclerView -->
+
+    <EditText
+        android:id="@+id/editTextFriendEmail"
+        android:layout_width="297dp"
+        android:layout_height="49dp"
+        android:hint="Friend's Email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="118dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/blue"
+        android:text="Add Friend"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        app:layout_constraintTop_toBottomOf="@+id/editTextFriendEmail"
+        tools:layout_editor_absoluteX="-16dp" />
+
+    <!-- The rest of your layout -->
+
+    <!-- Other UI elements as needed -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
             }
             try {
                 val response: String = client.post {
-                    url("http://10.51.19.249:3000/auth/login")
+                    url("http://10.51.65.120:3000/auth/login")
                     contentType(ContentType.Application.Json)
                     body = LoginData(
                         email = username,
