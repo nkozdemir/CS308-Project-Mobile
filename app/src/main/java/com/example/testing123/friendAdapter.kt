@@ -7,13 +7,19 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class FriendsAdapter(private var friendsList: List<Friends>) :
-    RecyclerView.Adapter<FriendsAdapter.FriendsViewHolder>() {
+interface FriendsItemClickListener {
+    fun onDeleteButtonClick(friend: Friends)
+}
+
+
+class FriendsAdapter(
+    private var friendsList: List<Friends>,
+    private val clickListener: FriendsItemClickListener
+) : RecyclerView.Adapter<FriendsAdapter.FriendsViewHolder>() {
 
     class FriendsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val friendName: TextView = itemView.findViewById(R.id.friendName)
         val performerTextView: TextView = itemView.findViewById(R.id.performerTextView)
-        val friendSongsButton: Button = itemView.findViewById(R.id.friendSongsButton)
         val deleteButton: Button = itemView.findViewById(R.id.deleteButton)
     }
 
@@ -29,14 +35,12 @@ class FriendsAdapter(private var friendsList: List<Friends>) :
         holder.friendName.text = "Name: ${currentFriend.friendInfo.name}"
         holder.performerTextView.text = "Mail: ${currentFriend.friendInfo.email}"
 
-        holder.friendSongsButton.setOnClickListener {
-            // Handle friend songs button click
-        }
 
         holder.deleteButton.setOnClickListener {
-            // Handle delete button click
+            clickListener.onDeleteButtonClick(currentFriend)
         }
     }
+
 
     override fun getItemCount(): Int {
         return friendsList.size

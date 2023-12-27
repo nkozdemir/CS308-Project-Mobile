@@ -3,6 +3,7 @@ package com.example.testing123
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -17,6 +18,7 @@ import io.ktor.client.request.get
 import io.ktor.client.request.header
 import io.ktor.client.request.post
 import io.ktor.client.statement.HttpResponse
+import io.ktor.client.statement.readText
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.contentType
@@ -43,14 +45,28 @@ data class Friends(
     @SerialName("UserID") val userID: Int,
     @SerialName("FriendUserID") val friendUserID: Int,
     @SerialName("FriendInfo") val friendInfo: FriendInfo,
-
-
-
     )
 
-class FriendsActivity : AppCompatActivity() {
+@Serializable
+data class DeleteFriendResponse(
+    @SerialName("status") val status: String,
+    @SerialName("code") val code: Int,
+    @SerialName("message") val message: String,
+    @SerialName("data") val data: DeleteFriendData? = null
+)
+
+@Serializable
+data class DeleteFriendData(
+    @SerialName("FriendID") val friendID: Int,
+    @SerialName("UserID") val userID: Int,
+    @SerialName("FriendUserID") val friendUserID: Int
+)
+
+
+class FriendsActivity : AppCompatActivity(), FriendsItemClickListener {
 
     private lateinit var editTextFriendEmail: EditText
+    private var friendsList: List<Friends> = emptyList()
     private lateinit var buttonAddFriend: Button
     private lateinit var recyclerView: RecyclerView
     private lateinit var friendsAdapter: FriendsAdapter
@@ -63,7 +79,8 @@ class FriendsActivity : AppCompatActivity() {
         // Initialize recyclerView before setting adapter and layout manager
         recyclerView = findViewById(R.id.recyclerView)
 
-        friendsAdapter = FriendsAdapter(emptyList())  // Initialize with an empty list
+        friendsAdapter = FriendsAdapter(emptyList(), this)
+
         recyclerView.adapter = friendsAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -82,46 +99,6 @@ class FriendsActivity : AppCompatActivity() {
         fetchAllFriends()
     }
 
-    private fun addFriend() {
-        val friendEmail = editTextFriendEmail.text.toString()
-
-        if (friendEmail.isNotEmpty()) {
-            mainScope.launch {
-                try {
-                    val accessToken = TokenManager.getInstance().getAccessToken()
-
-                    // Make the API call to add a friend
-                    val response: HttpResponse = withContext(Dispatchers.IO) {
-                        val client = HttpClient {
-                            install(JsonFeature) {
-                                serializer = KotlinxSerializer(Json)
-                            }
-                        }
-
-                        client.post("http://10.51.65.120:3000/friend/addFriend") {
-                            header(HttpHeaders.Authorization, "Bearer $accessToken")
-                            contentType(ContentType.Application.Json)
-                            body = mapOf("friendEmail" to friendEmail)
-                        }
-
-                    }
-
-                    Toast.makeText(this@FriendsActivity, "Add Successful", Toast.LENGTH_SHORT).show()
-
-
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    Toast.makeText(this@FriendsActivity, "Add failed:${e.message}", Toast.LENGTH_SHORT).show()
-                    // Handle exceptions
-                }
-            }
-        } else {
-            // Handle empty friendEmail case
-            // Show a Toast or error message
-            Toast.makeText(this, "Please enter your friend's e-mail", Toast.LENGTH_SHORT).show()
-        }
-    }
-
     private fun fetchAllFriends(){
         val accessToken = TokenManager.getInstance().getAccessToken()
 
@@ -134,7 +111,7 @@ class FriendsActivity : AppCompatActivity() {
                         }
                     }
 
-                    client.get("http://10.51.65.120:3000/friend/getAllFriends") {
+                    client.get("http://10.51.19.249:3000/friend/getAllFriends") {
                         header(HttpHeaders.Authorization, "Bearer $accessToken")
                     }
                 }
@@ -157,6 +134,54 @@ class FriendsActivity : AppCompatActivity() {
         }
     }
 
+    private fun addFriend() {
+        val friendEmail = editTextFriendEmail.text.toString()
+
+        if (friendEmail.isNotEmpty()) {
+            mainScope.launch {
+                try {
+                    val accessToken = TokenManager.getInstance().getAccessToken()
+
+                    // Make the API call to add a friend
+                    val response: HttpResponse = withContext(Dispatchers.IO) {
+                        val client = HttpClient {
+                            install(JsonFeature) {
+                                serializer = KotlinxSerializer(Json)
+                            }
+                        }
+
+                        client.post("http://10.51.19.249:3000/friend/addFriend") {
+                            header(HttpHeaders.Authorization, "Bearer $accessToken")
+                            contentType(ContentType.Application.Json)
+                            body = mapOf("friendEmail" to friendEmail)
+                        }
+
+
+                    }
+                    fetchAllFriends()
+
+                    Toast.makeText(this@FriendsActivity, "Add Successful", Toast.LENGTH_SHORT).show()
+
+
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    Toast.makeText(this@FriendsActivity, "Add failed:${e.message}", Toast.LENGTH_SHORT).show()
+                    // Handle exceptions
+                }
+            }
+        } else {
+            // Handle empty friendEmail case
+            // Show a Toast or error message
+            Toast.makeText(this, "Please enter your friend's e-mail", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    fun allFriendSongsClicked(view: View){
+        val intent = Intent(this, FriendsSongsActivity::class.java)
+        startActivity(intent)
+    }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -174,4 +199,50 @@ class FriendsActivity : AppCompatActivity() {
         super.onDestroy()
         mainScope.cancel()
     }
+
+    override fun onDeleteButtonClick(friend: Friends) {
+        mainScope.launch {
+            try {
+                val accessToken = TokenManager.getInstance().getAccessToken()
+
+                // Make the API call to delete a friend
+                val response: HttpResponse = withContext(Dispatchers.IO) {
+                    val client = HttpClient {
+                        install(JsonFeature) {
+                            serializer = KotlinxSerializer(Json)
+                        }
+                    }
+
+                    client.post("http://10.51.19.249:3000/friend/deleteFriend") {
+                        header(HttpHeaders.Authorization, "Bearer $accessToken")
+                        contentType(ContentType.Application.Json)
+
+                        body = mapOf("friendUserId" to friend.friendUserID)
+                    }
+                }
+
+                val jsonString: String = response.readText()
+                val apiResponse: DeleteFriendResponse = Json.decodeFromString(jsonString)
+
+                if (apiResponse.status == "success") {
+                    // Friend deleted successfully
+                    Toast.makeText(this@FriendsActivity, "Friend deleted successfully", Toast.LENGTH_SHORT).show()
+
+
+
+                    // Optionally, you can update the UI by removing the friend from the list
+                    fetchAllFriends()
+                } else {
+                    // Handle the case when the deletion is not successful
+                    Toast.makeText(this@FriendsActivity, "Failed to delete friend", Toast.LENGTH_SHORT).show()
+                }
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+                // Handle exceptions
+                Toast.makeText(this@FriendsActivity, "Failed to delete friend: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
 }
