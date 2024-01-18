@@ -105,7 +105,7 @@ class AllAddedSongs : AppCompatActivity() {
                         }
                     }
 
-                    client.post("http://10.51.19.249:3000/song/deleteSong/User") {
+                    client.post("http://192.168.1.31:3000/song/deleteSong/User") {
                         header(HttpHeaders.Authorization, "Bearer $accessToken")
                         contentType(ContentType.Application.Json)
                         body = mapOf("songId" to songId)
@@ -153,7 +153,7 @@ class AllAddedSongs : AppCompatActivity() {
                         }
                     }
 
-                    client.get("http://10.51.19.249:3000/song/getAllUserSongs") {
+                    client.get("http://192.168.1.31:3000/song/getAllUserSongs") {
                         header(HttpHeaders.Authorization, "Bearer $accessToken")
                     }
                 }

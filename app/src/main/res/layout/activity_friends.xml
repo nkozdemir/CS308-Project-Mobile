@@ -43,23 +43,5 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextFriendEmail"
         tools:layout_editor_absoluteX="0dp" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="280dp"
-        android:layout_height="50dp"
-        android:background="@drawable/blue_theme_outline"
-        android:clickable="true"
-        android:onClick="allFriendSongsClicked"
-        android:text="Your Friends' Songs"
-        android:textAlignment="center"
-        android:textColor="#EDE5E5"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
-
-    <!-- The rest of your layout -->
-
-    <!-- Other UI elements as needed -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -109,7 +109,7 @@ class CsvUploadActivity : AppCompatActivity() {
             val client = HttpClient()
 
             try {
-                val response: ApiResponse<List<Song>> = client.post("http://10.51.65.120:3000/upload") {
+                val response: ApiResponse<List<Song>> = client.post("http://192.168.1.31:3000/upload") {
                     headers {
                         accessToken?.let { append(HttpHeaders.Authorization, "Bearer $it") }
                     }

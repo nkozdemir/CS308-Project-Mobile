@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
             }
             try {
                 val response: String = client.post {
-                    url("http://10.51.19.249:3000/auth/login")
+                    url("http://192.168.1.31:3000/auth/login")
                     contentType(ContentType.Application.Json)
                     body = LoginData(
                         email = username,
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
 
                 println("Login failed: ${e.message}")
 
-                Toast.makeText(this@MainActivity, "Login failed:${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "Login failed", Toast.LENGTH_SHORT).show()
             } finally {
                 client.close()
             }

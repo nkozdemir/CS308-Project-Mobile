@@ -106,7 +106,7 @@ class ManualAddSongActivity : AppCompatActivity() {
                     println(requestBody)
 
 
-                    client.post("http://10.51.65.120:3000/song/addCustomSong") {
+                    client.post("http://192.168.1.31:3000/song/addCustomSong") {
                         header(HttpHeaders.Authorization, "Bearer $accessToken")
                         contentType(ContentType.Application.Json)
                         body = requestBody

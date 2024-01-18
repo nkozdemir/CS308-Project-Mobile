@@ -64,7 +64,7 @@ class SignUpActivity : AppCompatActivity() {
 
         try {
             val response: String = client.post {
-                url("http://10.51.65.120:3000/register")
+                url("http://192.168.1.31:3000/register")
                 contentType(ContentType.Application.Json)
                 body = RegistrationData(
                     email = email,

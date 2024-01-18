@@ -133,7 +133,7 @@ class AddSongActivity : AppCompatActivity() {
                     println(requestBody)
 
 
-                    client.post("http://10.51.65.120:3000/spotifyapi/searchSong") {
+                    client.post("http://192.168.1.31:3000/spotifyapi/searchSong") {
                         header(HttpHeaders.Authorization, "Bearer $accessToken")
                         contentType(ContentType.Application.Json)
                         body = requestBody

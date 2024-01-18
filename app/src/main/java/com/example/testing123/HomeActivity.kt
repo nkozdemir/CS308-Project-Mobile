@@ -46,7 +46,7 @@ class HomeActivity : AppCompatActivity() {
 
                     if (accessToken != null) {
 
-                        client.delete<Unit>("http://10.51.65.120:3000/auth/logout") {
+                        client.delete<Unit>("http://192.168.1.31:3000/auth/logout") {
                             header("Authorization", "Bearer $accessToken")
                         }
 
@@ -86,6 +86,16 @@ class HomeActivity : AppCompatActivity() {
 
     fun friendsClicked(view: View){
         val intent = Intent(this,FriendsActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun profileClicked(view: View){
+        val intent = Intent(this,ProfileActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun recommendationsClicked(view: View){
+        val intent = Intent(this,RecommendationAnalysis::class.java)
         startActivity(intent)
     }
 }

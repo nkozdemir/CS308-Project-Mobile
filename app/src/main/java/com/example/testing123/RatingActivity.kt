@@ -199,7 +199,7 @@ class RatingActivity : AppCompatActivity() {
                         }
                     }
 
-                    val url = "http://10.51.19.249:3000/rating/song/create"
+                    val url = "http://192.168.1.31:3000/rating/song/create"
 
                     val requestBody = SongRatingSubmitRequest(
                         songID = song.songID,
@@ -245,7 +245,7 @@ class RatingActivity : AppCompatActivity() {
                         }
                     }
 
-                    val url = "http://10.51.19.249:3000/rating/song/delete"
+                    val url = "http://192.168.1.31:3000/rating/song/delete"
 
                     client.post<String>(url) {
                         header(HttpHeaders.Authorization, "Bearer $accessToken")
@@ -288,7 +288,7 @@ class RatingActivity : AppCompatActivity() {
                     }
                 }
 
-                val url = "http://10.51.19.249:3000/rating/song/get/userid"
+                val url = "http://192.168.1.31:3000/rating/song/get/userid"
 
                 client.get(url) {
                     header(HttpHeaders.Authorization, "Bearer $accessToken")
@@ -328,7 +328,7 @@ class RatingActivity : AppCompatActivity() {
                 }
 
 
-                val url = "http://10.51.19.249:3000/rating/song/get/songid"
+                val url = "http://192.168.1.31:3000/rating/song/get/songid"
 
 
 

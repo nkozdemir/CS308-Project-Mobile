@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/rm222_mind_14"
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
@@ -12,11 +13,12 @@
         android:layout_height="123dp"
         android:layout_marginTop="18dp"
         android:background="@drawable/home_text_outline"
-        android:text="Recommendations"
-
         android:clickable="true"
+        android:onClick="recommendationsClicked"
+        android:text="Recommendations &amp; Analysis"
         android:textAlignment="center"
-        android:textSize="35sp"
+        android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dashboardText" />
@@ -25,7 +27,7 @@
         android:id="@+id/desc3"
         android:layout_width="253dp"
         android:layout_height="36dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="20dp"
         android:text="Our Picks For You"
         android:textAlignment="center"
         android:textSize="18sp"
@@ -39,9 +41,9 @@
         android:layout_height="123dp"
         android:layout_marginTop="18dp"
         android:background="@drawable/home_text_outline"
-        android:text="Dashboard"
         android:clickable="true"
         android:onClick="dashboardClicked"
+        android:text="Dashboard"
         android:textAlignment="center"
         android:textSize="45sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -115,10 +117,27 @@
         android:clickable="true"
         android:onClick="friendsClicked"
         android:contentDescription="Friends Button"
+        app:maxImageSize="40dp"
         app:backgroundTint="#B6CCC8"
         app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:srcCompat="@drawable/baseline_friends" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton3"
+        android:layout_width="65dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        app:backgroundTint="#B6CCC8"
+        android:onClick="profileClicked"
+        android:contentDescription="Profile Button"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:maxImageSize="40dp"
+        app:srcCompat="@drawable/baseline_account_circle_24"
+        android:scaleType="centerInside"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

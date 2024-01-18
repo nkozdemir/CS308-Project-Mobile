@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rm222_mind_14"
+    tools:context=".Analysis">
+
+    <TextView
+        android:id="@+id/byMonth3"
+        android:layout_width="220dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/home_text_outline"
+        android:clickable="true"
+        android:text="Your Top Rated Songs From Last Months"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <EditText
+        android:id="@+id/month2"
+        android:layout_width="150dp"
+        android:layout_height="59dp"
+
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="Enter # of Months"
+        android:inputType="number"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/byMonth3"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <TextView
+        android:id="@+id/byMonth4"
+        android:layout_width="219dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/home_text_outline"
+        android:clickable="true"
+        android:text="Daily Average Rating From n Days"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+    <EditText
+        android:id="@+id/numberOfDays"
+        android:layout_width="150dp"
+        android:layout_height="59dp"
+
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="Enter # of Days"
+        android:inputType="number"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/byMonth4"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+    <EditText
+        android:id="@+id/amountOfSongs2"
+        android:layout_width="119dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="Enter # of Songs"
+        android:inputType="number"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/decadeSpinner2"
+        app:layout_constraintTop_toBottomOf="@+id/title3" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="411dp"
+        android:layout_height="68dp"
+        android:background="#C0D6BF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/decadeSpinner2"
+        android:layout_width="115dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="40dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toStartOf="@+id/amountOfSongs2"
+        app:layout_constraintStart_toEndOf="@+id/byDecade2"
+        app:layout_constraintTop_toBottomOf="@+id/title3" />
+
+    <TextView
+        android:id="@+id/byDecade2"
+        android:layout_width="170dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/home_text_outline"
+        android:clickable="true"
+        android:text="Your Top Rated Songs by Decade"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title3" />
+
+    <TextView
+        android:id="@+id/title3"
+        android:layout_width="307dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="84dp"
+        android:text="Analysis Through"
+
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:backgroundTint="@color/blue"
+        android:text="Get"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/decadeSpinner2" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:backgroundTint="@color/blue"
+        android:text="Get"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/byMonth3" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/blue"
+        android:text="Get"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/byMonth4" />
+</androidx.constraintlayout.widget.ConstraintLayout>

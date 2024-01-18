@@ -111,7 +111,7 @@ class FriendsActivity : AppCompatActivity(), FriendsItemClickListener {
                         }
                     }
 
-                    client.get("http://10.51.19.249:3000/friend/getAllFriends") {
+                    client.get("http://192.168.1.31:3000/friend/getAllFriends") {
                         header(HttpHeaders.Authorization, "Bearer $accessToken")
                     }
                 }
@@ -150,7 +150,7 @@ class FriendsActivity : AppCompatActivity(), FriendsItemClickListener {
                             }
                         }
 
-                        client.post("http://10.51.19.249:3000/friend/addFriend") {
+                        client.post("http://192.168.1.31:3000/friend/addFriend") {
                             header(HttpHeaders.Authorization, "Bearer $accessToken")
                             contentType(ContentType.Application.Json)
                             body = mapOf("friendEmail" to friendEmail)
@@ -213,7 +213,7 @@ class FriendsActivity : AppCompatActivity(), FriendsItemClickListener {
                         }
                     }
 
-                    client.post("http://10.51.19.249:3000/friend/deleteFriend") {
+                    client.post("http://192.168.1.31:3000/friend/deleteFriend") {
                         header(HttpHeaders.Authorization, "Bearer $accessToken")
                         contentType(ContentType.Application.Json)
 

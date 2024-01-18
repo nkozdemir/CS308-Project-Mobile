@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rm222_mind_14"
+    tools:context=".RecommendationAnalysis">
+
+    <TextView
+        android:id="@+id/friendRatings2"
+        android:layout_width="191dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/home_text_outline"
+        android:clickable="true"
+        android:text="Your Friends' Ratings"
+        android:onClick="yourFriendsRatingsClicked"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintStart_toEndOf="@+id/performerRating"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/YourLatestSongs" />
+
+    <TextView
+        android:id="@+id/performerRating"
+        android:layout_width="191dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="1dp"
+        android:background="@drawable/home_text_outline"
+        android:clickable="true"
+        android:onClick="yourPerformerRatingsClicked"
+        android:text="Your Performer Ratings"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/friendRatings2"
+        app:layout_constraintHorizontal_bias="0.077"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/songRatings" />
+
+    <TextView
+        android:id="@+id/friendLatest"
+        android:layout_width="191dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/home_text_outline"
+        android:clickable="true"
+        android:text="Your Friends' Latest Songs"
+        android:onClick="yourFriendLatestClicked"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/performerRating" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="411dp"
+        android:layout_height="68dp"
+        android:background="#C0D6BF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Title1"
+        android:layout_width="341dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="12dp"
+        android:text="Recommendation Through"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/songRatings"
+        android:layout_width="191dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/home_text_outline"
+        android:clickable="true"
+        android:onClick="yourSongRatingsClicked"
+        android:text="Your Song Ratings"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title1" />
+
+    <TextView
+        android:id="@+id/YourLatestSongs"
+        android:layout_width="191dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/home_text_outline"
+        android:clickable="true"
+        android:text="Your Latest Songs"
+        android:onClick="yourLatestSongsClicked"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title1" />
+
+    <EditText
+        android:id="@+id/number"
+        android:layout_width="191dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="12dp"
+        android:ems="10"
+        android:hint="Enter the Amount of Songs"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/friendLatest"
+        app:layout_constraintTop_toBottomOf="@+id/friendRatings2" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="Enter The Amount of Songs You Want and Click On the Type of Recommendation You Would Like"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/friendLatest" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
