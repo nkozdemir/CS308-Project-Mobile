@@ -4,20 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FriendsSongsActivity">
-
-    <TextView
-        android:id="@+id/title4"
-        android:layout_width="307dp"
-        android:layout_height="45dp"
-        android:text="Your Friends' Songs"
-
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+    tools:context=".DisplayAnalysis">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -27,11 +14,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/AnalysisTitle"
+        android:layout_width="237dp"
+        android:layout_height="66dp"
+        android:text="Analysis According to Your Choices"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/friendSongs"
+        android:id="@+id/recyclerViewAnalysis"
         android:layout_width="409dp"
         android:layout_height="0dp"
+        android:background="#4F8FCCE8"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title4" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AnalysisTitle" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

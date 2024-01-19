@@ -77,7 +77,7 @@ class FriendsActivity : AppCompatActivity(), FriendsItemClickListener {
         setContentView(R.layout.activity_friends)
 
         // Initialize recyclerView before setting adapter and layout manager
-        recyclerView = findViewById(R.id.recyclerView)
+        recyclerView = findViewById(R.id.friendSongs)
 
         friendsAdapter = FriendsAdapter(emptyList(), this)
 
@@ -97,6 +97,12 @@ class FriendsActivity : AppCompatActivity(), FriendsItemClickListener {
             addFriend()
         }
         fetchAllFriends()
+    }
+
+    fun getAllFriendsSongs(view: View){
+
+        val intent = Intent(this@FriendsActivity, FriendsSongsActivity::class.java)
+        startActivity(intent)
     }
 
     private fun fetchAllFriends(){
@@ -174,12 +180,6 @@ class FriendsActivity : AppCompatActivity(), FriendsItemClickListener {
             // Show a Toast or error message
             Toast.makeText(this, "Please enter your friend's e-mail", Toast.LENGTH_SHORT).show()
         }
-    }
-
-
-    fun allFriendSongsClicked(view: View){
-        val intent = Intent(this, FriendsSongsActivity::class.java)
-        startActivity(intent)
     }
 
 

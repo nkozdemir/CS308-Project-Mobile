@@ -6,14 +6,11 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 
-lateinit var recyclerView: RecyclerView
-
-class DisplayRecommendationsAnalysis : AppCompatActivity() {
+class DisplayAnalysis : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_display_recommendations_analysis)
+        setContentView(R.layout.activity_display_analysis)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -22,25 +19,23 @@ class DisplayRecommendationsAnalysis : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_24)
 
-        val recommendations = RecAnDataHolder.recommendations
 
-        recyclerView = findViewById(R.id.friendSongs)
-        val layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
+        recyclerView = findViewById(R.id.recyclerViewAnalysis)
+        val analysisAdapter = AnalysisAdapter(emptyList()) // Create an adapter for the RecyclerView
+        recyclerView.adapter = analysisAdapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
-
-        val adapter = RecommendationAdapter(recommendations) { position ->
-
-        }
-
-
-        recyclerView.adapter = adapter
+        // Set the analysis data to the adapter
+        val analysis = AnalysisDataHolder.analysis
+        analysisAdapter.updateData(analysis)
     }
+
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                val intent = Intent(this, RecommendationAnalysis::class.java)
+                val intent = Intent(this, Analysis::class.java)
                 startActivity(intent)
                 finish()
                 return true

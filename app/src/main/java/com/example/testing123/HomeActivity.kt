@@ -14,6 +14,7 @@ import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.request.delete
 import io.ktor.client.request.header
+import io.ktor.client.request.post
 import kotlinx.coroutines.runBlocking
 
 class HomeActivity : AppCompatActivity() {
@@ -46,7 +47,7 @@ class HomeActivity : AppCompatActivity() {
 
                     if (accessToken != null) {
 
-                        client.delete<Unit>("http://192.168.1.31:3000/auth/logout") {
+                        client.post<Unit>("http://192.168.1.31:3000/auth/logout") {
                             header("Authorization", "Bearer $accessToken")
                         }
 

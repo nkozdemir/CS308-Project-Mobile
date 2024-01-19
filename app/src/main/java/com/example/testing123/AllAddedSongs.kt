@@ -1,11 +1,9 @@
 package com.example.testing123
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,14 +13,12 @@ import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.request.get
 import io.ktor.client.request.header
 import io.ktor.http.HttpHeaders
-import io.ktor.http.takeFrom
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import androidx.recyclerview.widget.RecyclerView
 import io.ktor.client.request.post
@@ -73,7 +69,7 @@ class AllAddedSongs : AppCompatActivity() {
         supportActionBar?.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_24)
 
         // Initialize RecyclerView and its adapter
-        recyclerView = findViewById(R.id.recyclerView)
+        recyclerView = findViewById(R.id.friendSongs)
         songAdapter = SongAdapter(
             onSongDeleteClick = { songId ->
                 // Handle delete button click, make a post request to delete the song
