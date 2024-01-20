@@ -24,6 +24,7 @@ class HomeActivity : AppCompatActivity() {
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+        supportActionBar?.title = "HarmoniFuse"
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

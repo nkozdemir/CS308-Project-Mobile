@@ -32,14 +32,33 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonElement
 
+@Serializable
+data class Date<T>(
+    @SerialName("fn") val fn: String,
+    @SerialName("args") val args: List<T>
+)
+@Serializable
+data class SongInfo(
+    @SerialName("SongID") val songID: Int,
+    @SerialName("Title") val title: String,
+    @SerialName("ReleaseDate") val releaseDate: String,
+    @SerialName("Album") val album: String,
+    @SerialName("Length") val length: Int,
+    @SerialName("SpotifyID") val spotifyID: String,
+    @SerialName("Image") val image: String,
+    @SerialName("Performers") val performers: List<Performer>,
+    @SerialName("Genres") val genres: List<Genre>
+)
 @Serializable
 data class SongRating(
     @SerialName("SongRatingID") val songRatingID: Int,
     @SerialName("UserID") val userID: Int,
     @SerialName("SongID") val songID: Int,
     @SerialName("Rating") val rating: Int,
-    @SerialName("Date") val date: String
+    @SerialName("Date") val date: String,
+    @SerialName("SongInfo") val songInfo: SongInfo
 )
 @Serializable
 data class SongRatingResponse(
@@ -48,12 +67,22 @@ data class SongRatingResponse(
     @SerialName("message") val message: String,
     @SerialName("data") val data: List<SongRating>
 )
+
+@Serializable
+data class SubmitSongRating(
+    @SerialName("SongRatingID") val songRatingID: Int,
+    @SerialName("UserID") val userID: Int,
+    @SerialName("SongID") val songID: Int,
+    @SerialName("Rating") val rating: Int,
+    @SerialName("Date") val date: Date<String>,
+
+)
 @Serializable
 data class CreateSongRatingResponse(
     @SerialName("status") val status: String,
     @SerialName("code") val code: Int,
     @SerialName("message") val message: String,
-    @SerialName("data") val data: SongRating
+    @SerialName("data") val data: SubmitSongRating
 )
 
 @Serializable
@@ -70,7 +99,7 @@ data class DeleteSongRatingResponse(
     @SerialName("status") val status: String,
     @SerialName("code") val code: Int,
     @SerialName("message") val message: String,
-    //@SerialName("data") val data: List<SongRating>?
+    @SerialName("data") val data: JsonElement
 )
 
 
@@ -196,6 +225,7 @@ class RatingActivity : AppCompatActivity() {
                     val client = HttpClient {
                         install(JsonFeature) {
                             serializer = KotlinxSerializer(Json)
+
                         }
                     }
 
@@ -362,10 +392,6 @@ class RatingActivity : AppCompatActivity() {
             Log.e("NETWORK_ERROR", "Error fetching general song rating.", e)
         }
          return 0.0f
-    }
-    fun getSonginfo(song: Song) {
-        val accessToken = TokenManager.getInstance().getAccessToken()
-
     }
 
 

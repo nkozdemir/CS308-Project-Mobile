@@ -80,6 +80,7 @@ class FriendsSongsActivity : AppCompatActivity() {
                     val client = HttpClient {
                         install(JsonFeature) {
                             serializer = KotlinxSerializer(Json)
+
                         }
                     }
 

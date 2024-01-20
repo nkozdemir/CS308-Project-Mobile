@@ -30,6 +30,11 @@ class DashboardActivity : AppCompatActivity() {
         val intent = Intent(this,Analysis::class.java)
         startActivity(intent)
     }
+
+    fun allPerformersClicked(view: View){
+        val intent = Intent(this,AllPerformers::class.java)
+        startActivity(intent)
+    }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {

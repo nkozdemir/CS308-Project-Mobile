@@ -3,8 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/rm222_mind_14"
     android:layout_height="match_parent"
     tools:context=".PerformerRatingActivity">
+
+    <Button
+        android:id="@+id/exportButton"
+        android:layout_width="151dp"
+        android:layout_height="58dp"
+        android:layout_below="@id/ratingEditText"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/blue"
+        android:text="Export "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description1" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -16,12 +30,13 @@
 
     <TextView
         android:id="@+id/performerName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:layout_marginTop="150dp"
         android:background="@drawable/home_text_outline"
         android:text="TextView"
-        android:textSize="24sp"
+        android:textAlignment="center"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,6 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
         android:layout_marginEnd="104dp"
+        android:textStyle="bold"
         android:text="TextView"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,6 +83,7 @@
         android:layout_marginTop="64dp"
         android:layout_marginEnd="104dp"
         android:text="TextView"
+        android:textStyle="bold"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/generalPerformerRating" />
@@ -86,11 +103,13 @@
         android:id="@+id/ratingEditText"
         android:layout_width="173dp"
         android:layout_height="48dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="30dp"
         android:hint="Enter Rating"
         android:inputType="numberDecimal"
+        android:textAlignment="center"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/generalPerformerRating" />
 
@@ -106,13 +125,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/explainText" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/description1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/bottom_navigation_menu" />
+        android:layout_marginTop="60dp"
+        android:text="Your Ratings of This Performer's Songs"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/submitRatingButton" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
