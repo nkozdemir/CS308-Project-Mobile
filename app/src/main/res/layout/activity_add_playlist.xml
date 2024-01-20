@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rm222_mind_14"
+    tools:context=".AddPlaylist">
+
+    <EditText
+        android:id="@+id/editTextText2"
+        android:layout_width="243dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/text_outline"
+        android:ems="10"
+        android:hint="SongIDs (Optional)"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="243dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/text_outline"
+        android:ems="10"
+        android:hint="Playlist Name"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title21" />
+
+    <TextView
+        android:id="@+id/title21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Create a Playlist"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="110dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="100dp"
+        android:backgroundTint="@color/blue"
+        android:text="Create"
+        android:onClick="createButtonClicked"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

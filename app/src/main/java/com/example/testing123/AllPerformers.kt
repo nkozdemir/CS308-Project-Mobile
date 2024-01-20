@@ -79,7 +79,7 @@ class AllPerformers : AppCompatActivity() {
 
     private fun fetchPerformers() {
         val accessToken = TokenManager.getInstance().getAccessToken()
-        val json = Json { ignoreUnknownKeys = true }  //Change this (add genres etc.)
+        val json = Json { ignoreUnknownKeys = true }
 
         mainScope.launch {
             try {

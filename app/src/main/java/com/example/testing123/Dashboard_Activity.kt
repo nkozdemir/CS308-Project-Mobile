@@ -35,6 +35,13 @@ class DashboardActivity : AppCompatActivity() {
         val intent = Intent(this,AllPerformers::class.java)
         startActivity(intent)
     }
+
+    fun playlistsClicked(view: View){
+        val intent = Intent(this,PlaylistActivity::class.java)
+        startActivity(intent)
+    }
+
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
