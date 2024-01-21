@@ -21,7 +21,7 @@
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playlist" />
+        app:layout_constraintTop_toBottomOf="@+id/your_songs" />
 
     <TextView
         android:id="@+id/playlist"
@@ -37,7 +37,7 @@
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/analysis" />
+        app:layout_constraintTop_toBottomOf="@+id/perfRating" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -71,7 +71,7 @@
         android:id="@+id/analysis"
         android:layout_width="217dp"
         android:layout_height="97dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="375dp"
         android:background="@drawable/home_text_outline"
         android:clickable="true"
         android:onClick="analysisClicked"

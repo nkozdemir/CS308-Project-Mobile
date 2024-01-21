@@ -132,24 +132,6 @@ class RatingActivity : AppCompatActivity() {
 
         performerNameTextView.text = "Performer: $firstPerformerName"
 
-        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
-        bottomNavigationView.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.action_song -> {
-                    // Handle song item click (if needed)
-                    true
-                }
-                R.id.action_performer -> {
-                    // Handle performer item click
-                    val intent = Intent(this, PerformerRatingActivity::class.java)
-                    startActivity(intent)
-
-                    true
-                }
-                else -> false
-            }
-        }
-        bottomNavigationView.menu.findItem(R.id.action_song)?.isChecked = true
 
         mainScope.launch {
             val averageRating = getGeneralSongRating(song)

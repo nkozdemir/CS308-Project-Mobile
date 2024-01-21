@@ -18,7 +18,7 @@ class PlaylistAdapter(
     class PlaylistViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textName: TextView = itemView.findViewById(R.id.textViewPlaylist)
         val btnRate: Button = itemView.findViewById(R.id.buttonDelete)
-        val imageView: ImageView = itemView.findViewById(R.id.imageViewPlaylist)
+
 
     }
 
@@ -32,9 +32,9 @@ class PlaylistAdapter(
         val playlist = playlists[position]
         holder.textName.text = playlist.name
 
-        Glide.with(holder.itemView.context)
+        /*Glide.with(holder.itemView.context)
             .load(playlist.image?.let { getImageUrl(it) }) // Assuming "image" is a URL
-            .into(holder.imageView)
+            .into(holder.imageView)*/
 
 
         holder.btnRate.setOnClickListener { onDeleteClickListener(playlist) }
