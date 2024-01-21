@@ -1,11 +1,14 @@
 package com.example.testing123
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.MainScope
@@ -25,6 +28,10 @@ class DisplaySearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_search)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_24)
 
         recyclerView = findViewById(R.id.friendSongs)
         val layoutManager = LinearLayoutManager(this)
@@ -34,6 +41,8 @@ class DisplaySearchActivity : AppCompatActivity() {
             onAddButtonClick(position, view)
         }
         recyclerView.adapter = adapter
+
+
     }
 
     fun onAddButtonClick(position: Int, view: View) {
@@ -89,6 +98,20 @@ class DisplaySearchActivity : AppCompatActivity() {
     }
     private fun showToast(context: Context, message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                // Handle the Up button click
+                val intent = Intent(this, PlaylistActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                startActivity(intent)
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
 

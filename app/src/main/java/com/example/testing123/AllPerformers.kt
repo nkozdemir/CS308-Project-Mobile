@@ -90,7 +90,7 @@ class AllPerformers : AppCompatActivity() {
                         }
                     }
 
-                    client.get("http://192.168.1.31:3000/performer/getPerformer/user") {
+                    client.get("http://192.168.1.31:3000/rating/song/get/performers") {
                         header(HttpHeaders.Authorization, "Bearer $accessToken")
                     }
                 }

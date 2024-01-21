@@ -42,6 +42,7 @@ dependencies {
     implementation ("androidx.recyclerview:recyclerview:1.2.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
+    implementation("com.google.firebase:firebase-crashlytics-buildtools:2.9.9")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
     implementation ("io.ktor:ktor-client-android:1.6.4")
     implementation ("io.ktor:ktor-client-core:1.6.4")

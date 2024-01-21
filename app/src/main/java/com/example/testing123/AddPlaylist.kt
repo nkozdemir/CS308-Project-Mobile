@@ -84,7 +84,7 @@ class AddPlaylist : AppCompatActivity() {
                     client.post<CreatePlaylistResponse>("http://192.168.1.31:3000/playlist/createPlaylist") {
                         header(HttpHeaders.Authorization, "Bearer $accessToken")
 
-                        body = CreatePlaylistRequest(playlistName, parseSongIds(songIds))
+                        body = CreatePlaylistRequest(playlistName)
                     }
                 }
 
@@ -98,7 +98,6 @@ class AddPlaylist : AppCompatActivity() {
             } catch (e: Exception) {
                 // Handle exception
                 e.printStackTrace()
-                Toast.makeText(this@AddPlaylist, "Error creating playlist", Toast.LENGTH_SHORT).show()
             }
         }
         val intent = Intent(this,PlaylistActivity::class.java)

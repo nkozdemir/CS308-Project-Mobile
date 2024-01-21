@@ -158,7 +158,8 @@ class PlaylistActivity : AppCompatActivity() {
     private val onItemClickListener: (Playlist) -> Unit = { playlist ->
         // Handle item click
         val intent = Intent(this, PlaylistsSongs::class.java)
-        intent.putExtra("playlistId", playlist.playlistID)
+        intent.putExtra("playlistID", playlist.playlistID)
+        intent.putExtra("playlistName", playlist.name)
         startActivity(intent)
     }
 
@@ -173,7 +174,7 @@ class PlaylistActivity : AppCompatActivity() {
         when (item.itemId) {
             android.R.id.home -> {
                 // Handle the Up button click
-                val intent = Intent(this, AllPerformers::class.java)
+                val intent = Intent(this, DashboardActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
                 startActivity(intent)
 

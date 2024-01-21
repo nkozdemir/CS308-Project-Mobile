@@ -19,6 +19,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".DisplayUser"
+            android:exported="false" />
+        <activity
+            android:name=".PlaylistSongsToAdd"
+            android:exported="false" />
+        <activity
             android:name=".AddPlaylist"
             android:exported="false" />
         <activity
