@@ -133,8 +133,43 @@ class PlaylistsSongs : AppCompatActivity() {
     }
 
     fun onDeleteClick(position: Int) {
+        val playlistID = intent.getIntExtra("playlistID", -1)
+        val accessToken = TokenManager.getInstance().getAccessToken()
+        val selectedSong = playlistSongsAdapter.playlistSongs[position]
 
+        mainScope.launch {
+            try {
+                val response = withContext(Dispatchers.IO) {
+                    val client = HttpClient {
+                        install(JsonFeature) {
+                            serializer = KotlinxSerializer()
+                        }
+                    }
+
+                    client.post<DeleteSongResponse>("http://192.168.1.31:3000/playlist/deleteSongFromPlaylist") {
+                        header("Authorization", "Bearer $accessToken")
+                        contentType(ContentType.Application.Json)
+                        body = mapOf(
+                            "playlistID" to playlistID,
+                            "songID" to selectedSong.songID
+                        )
+                    }
+                }
+
+                if (response.code == 200 && response.data != null) {
+                    println("Song deleted from playlist successfully")
+                    recreate()
+                } else {
+                    println("Error: ${response.status}")
+                    // Handle error, if needed
+                }
+            } catch (e: Exception) {
+                println("Error deleting song from playlist: ${e.message}")
+                // Handle exception, if needed
+            }
+        }
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {

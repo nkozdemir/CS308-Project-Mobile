@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 class PlaylistSongsAdapter(
-    private var playlistSongs: List<PlaylistSong>,
+    var playlistSongs: List<PlaylistSong>,
     private val onDeleteClickListener: PlaylistsSongs
 ) : RecyclerView.Adapter<PlaylistSongsAdapter.PlaylistSongViewHolder>() {
 

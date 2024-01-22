@@ -17,20 +17,20 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/playlistSongs"
         android:layout_width="409dp"
-        android:layout_height="0dp"
+        android:layout_height="618dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <Button
         android:id="@+id/button7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="181dp"
+        android:layout_height="52dp"
         android:backgroundTint="@color/blue"
         android:onClick="onSongsToAddClick"
         android:text="Find Songs To Add"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playlistSongs" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
