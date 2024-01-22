@@ -7,6 +7,16 @@
     android:layout_height="match_parent">
 
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/ash_gray"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
     <EditText
         android:id="@+id/editTextManualReleaseDate"
         android:layout_width="200dp"
@@ -25,7 +35,7 @@
         android:id="@+id/textViewAddSong"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/blue_theme_outline"
         android:text="Add Song Manually"
         android:textAlignment="center"

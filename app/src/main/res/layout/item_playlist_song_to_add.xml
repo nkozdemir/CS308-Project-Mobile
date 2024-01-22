@@ -3,6 +3,7 @@
     android:layout_height="325dp"
     android:gravity="center"
     android:orientation="vertical"
+    android:background="@drawable/b664f35d843db3c1be8ca0298b52a5e9"
     android:padding="16dp">
 
     <ImageView
@@ -25,7 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Song Name"
-            android:textAlignment="center"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -35,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Performer"
-            android:textAlignment="center"
+            android:textAlignment="viewStart"
             android:textSize="14sp" />
 
         <TextView
@@ -43,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Album"
-            android:textAlignment="center"
+            android:textAlignment="viewStart"
             android:textSize="14sp" />
     </LinearLayout>
 

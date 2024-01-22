@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
@@ -18,6 +19,7 @@ import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.readText
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
+import io.ktor.http.HttpStatusCode
 import io.ktor.http.contentType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -101,6 +103,11 @@ class AddSongActivity : AppCompatActivity() {
         supportActionBar?.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_24)
 
         supportActionBar?.title = ""
+
+        val exDBButton: Button = findViewById(R.id.exDBButton) // Replace with your button ID
+        exDBButton.setOnClickListener {
+            uploadDataFromExternalDB()
+        }
     }
 
     fun searchButtonClick(view: View) {
@@ -183,12 +190,54 @@ class AddSongActivity : AppCompatActivity() {
         }
     }
 
+    private fun uploadDataFromExternalDB() {
+        val accessToken = "your_jwt_token" // Replace with your actual JWT token
+
+        mainScope.launch {
+            try {
+                val response: HttpResponse = withContext(Dispatchers.IO) {
+                    val client = HttpClient {
+                        install(JsonFeature) {
+                            serializer = KotlinxSerializer(Json)
+                        }
+                    }
+
+                    client.post("http://192.168.1.31:3000/transferDataFromExternalDB") {
+                        header("Authorization", "Bearer $accessToken")
+                        contentType(ContentType.Application.Json)
+                    }
+                }
+
+                if (response.status == HttpStatusCode.OK) {
+                    Toast.makeText(
+                        this@AddSongActivity,
+                        "Data transfer completed successfully",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    Toast.makeText(
+                        this@AddSongActivity,
+                        "Data transfer failed:",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    println(response)
+                }
+            } catch (e: Exception) {
+                Toast.makeText(
+                    this@AddSongActivity,
+                    "Error transferring data: ${e.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
                 // Handle the Up button click
-                val intent = Intent(this, DashboardActivity::class.java)
+                val intent = Intent(this, HomeActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
                 startActivity(intent)
                 finish()

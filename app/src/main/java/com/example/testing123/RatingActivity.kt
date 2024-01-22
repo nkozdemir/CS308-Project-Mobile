@@ -120,6 +120,7 @@ class RatingActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_24)
+        supportActionBar?.title = ""
 
 
         song = SongRepository.selectedSong!!

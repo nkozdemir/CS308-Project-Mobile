@@ -114,7 +114,7 @@ class AddPlaylist : AppCompatActivity() {
         when (item.itemId) {
             android.R.id.home -> {
                 // Handle the Up button click
-                val intent = Intent(this, AllPerformers::class.java)
+                val intent = Intent(this, PlaylistActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
                 startActivity(intent)
 

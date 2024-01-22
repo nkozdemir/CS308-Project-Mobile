@@ -3,6 +3,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:gravity="center"
+    android:background="@drawable/b664f35d843db3c1be8ca0298b52a5e9"
     android:padding="16dp">
 
     <ImageView
