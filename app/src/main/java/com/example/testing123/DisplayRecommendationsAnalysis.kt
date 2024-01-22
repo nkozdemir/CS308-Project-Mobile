@@ -19,8 +19,9 @@ class DisplayRecommendationsAnalysis : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayShowTitleEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_24)
+        supportActionBar?.title = "Our Recommendations For You"
 
         val recommendations = RecAnDataHolder.recommendations
 
