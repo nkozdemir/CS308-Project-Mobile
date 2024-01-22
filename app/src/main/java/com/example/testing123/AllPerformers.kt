@@ -38,7 +38,7 @@ data class AllPerformer(
     @SerialName("SpotifyID") val spotifyID: String?,
     @SerialName("Image") val image: String?,
 
-)
+    )
 class AllPerformers : AppCompatActivity() {
 
     private val mainScope = MainScope()

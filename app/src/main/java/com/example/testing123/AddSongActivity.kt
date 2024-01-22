@@ -191,7 +191,7 @@ class AddSongActivity : AppCompatActivity() {
     }
 
     private fun uploadDataFromExternalDB() {
-        val accessToken = "your_jwt_token" // Replace with your actual JWT token
+        val accessToken = TokenManager.getInstance().getAccessToken() // Replace with your actual JWT token
 
         mainScope.launch {
             try {
