@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.annotations.SerializedName
 import io.ktor.client.HttpClient
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
@@ -20,7 +21,28 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Body
+import retrofit2.http.Header
+import retrofit2.http.POST
+
+@Serializable
+data class AddSongRequest(
+    @SerialName("playlistID") val playlistID: Int,
+    @SerialName("songIDs") val songIDs: List<Int>
+)
+
+interface PlaylistService {
+    @POST("playlist/addSongsToPlaylist")
+    suspend fun addSongToPlaylist(
+        @Header("Authorization") authorization: String,
+        @Body request: AddSongRequest
+    ): PlaylistSongResponse
+}
 
 class PlaylistSongsToAdd : AppCompatActivity() {
 
@@ -106,32 +128,26 @@ class PlaylistSongsToAdd : AppCompatActivity() {
         val accessToken = TokenManager.getInstance().getAccessToken()
         val selectedSong = playlistSongsAddAdapter.songsToAdd[position]
 
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://192.168.1.31:3000/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val playlistService = retrofit.create(PlaylistService::class.java)
+
         mainScope.launch {
             try {
-                val response = withContext(Dispatchers.IO) {
-                    val client = HttpClient {
-                        install(JsonFeature) {
-                            serializer = KotlinxSerializer(Json)
-                        }
-                    }
-
-                    client.post<PlaylistSongResponse> {
-                        url("http://192.168.1.31:3000/playlist/addSongsToPlaylist")
-                        header("Authorization", "Bearer $accessToken")
-                        contentType(ContentType.Application.Json)
-                        body = mapOf(
-                            "playlistID" to playlistID,
-                            "songIDs" to listOf(selectedSong.songID)
-                        )
-                    }
-                }
+                val response = playlistService.addSongToPlaylist(
+                    authorization = "Bearer $accessToken",
+                    request = AddSongRequest(playlistID, listOf(selectedSong.songID))
+                )
 
                 if (response.code == 200 && response.data != null) {
-                    println("Song added to playlist successfully")
-                    // Handle success, if needed
+                    //println("Song added to playlist successfully")
+                    //Toast.makeText(this@PlaylistSongsToAdd, "Song Added", Toast.LENGTH_SHORT).show()
                 } else {
-                    println("Error: ${response.status}")
-                    // Handle error, if needed
+                    //println("Error: ${response.status}")
+                    //Toast.makeText(this@PlaylistSongsToAdd, "Error Adding Song", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
                 println("Error adding song to playlist: ${e.message}")
@@ -139,6 +155,7 @@ class PlaylistSongsToAdd : AppCompatActivity() {
             }
         }
     }
+
 
 
 

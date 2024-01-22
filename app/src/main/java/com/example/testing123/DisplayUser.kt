@@ -17,6 +17,8 @@ class DisplayUser : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_24)
 
+        supportActionBar?.title = ""
+
 
         val userName = intent.getStringExtra("userName")
         val userEmail = intent.getStringExtra("userEmail")

@@ -100,7 +100,9 @@ class AllPerformers : AppCompatActivity() {
                 if (performerResponse.status == "success") {
                     val performers: List<AllPerformer> = performerResponse.data
 
-                    performerAdapter.updateData(performers)
+                    val uniquePerformers = performers.distinctBy { it.performerID }
+
+                    performerAdapter.updateData(uniquePerformers)
 
 
 

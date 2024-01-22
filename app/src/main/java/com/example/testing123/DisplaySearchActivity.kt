@@ -32,6 +32,7 @@ class DisplaySearchActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_24)
+        supportActionBar?.title = "Your Search Results"
 
         recyclerView = findViewById(R.id.friendSongs)
         val layoutManager = LinearLayoutManager(this)
@@ -104,7 +105,7 @@ class DisplaySearchActivity : AppCompatActivity() {
         when (item.itemId) {
             android.R.id.home -> {
                 // Handle the Up button click
-                val intent = Intent(this, PlaylistActivity::class.java)
+                val intent = Intent(this, AddSongActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
                 startActivity(intent)
                 finish()

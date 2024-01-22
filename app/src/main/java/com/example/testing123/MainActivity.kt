@@ -15,6 +15,8 @@ import io.ktor.client.request.url
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
@@ -34,6 +36,7 @@ data class LoginData(
 class MainActivity : AppCompatActivity() {
     private lateinit var usernameText: EditText
     private lateinit var passwordText: EditText
+    private val mainScope = MainScope()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -51,7 +54,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Username and password cannot be empty", Toast.LENGTH_SHORT).show()
             return
         }
-        runBlocking {
+        mainScope.launch(Dispatchers.IO) {
             val client = HttpClient(Android){
                 install(JsonFeature) {
                     serializer = KotlinxSerializer()
@@ -79,14 +82,14 @@ class MainActivity : AppCompatActivity() {
                     println("Access token or refresh token is null")
                 }
 
-                Toast.makeText(this@MainActivity, "Login successful", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@MainActivity, "Login successful", Toast.LENGTH_SHORT).show()
                 navigateToHomeAct()
             }catch (e: Exception) {
                 e.printStackTrace()
 
                 println("Login failed: ${e.message}")
 
-                Toast.makeText(this@MainActivity, "Login failed", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@MainActivity, "Login failed", Toast.LENGTH_SHORT).show()
             } finally {
                 client.close()
             }

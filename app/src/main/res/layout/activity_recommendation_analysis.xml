@@ -137,7 +137,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="Enter The Amount of Songs You Want and Click On the Type of Recommendation You Would Like"
+        android:text="Enter The Amount of Songs You Want and Click On the Type of Recommendation You Would Like to Recieve"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"

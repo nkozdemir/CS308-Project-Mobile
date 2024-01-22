@@ -45,6 +45,14 @@ data class PlaylistSongResponse(
     @SerialName("data") val data: List<PlaylistSong>
 )
 
+@Serializable
+data class DeleteSongResponse(
+    @SerialName("status") val status: String,
+    @SerialName("code") val code: Int,
+    @SerialName("message") val message: String,
+    @SerialName("data") val data: Int?
+)
+
 class PlaylistsSongs : AppCompatActivity() {
 
     private val mainScope = MainScope()

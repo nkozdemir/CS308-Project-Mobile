@@ -19,21 +19,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/blue"
-        android:text="Create New Playlist"
         android:onClick="createPlaylistClicked"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Create New Playlist"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playlists" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/playlists"
         android:layout_width="409dp"
         android:layout_height="0dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="49dp"
-        app:layout_constraintBottom_toBottomOf="@+id/createButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
